@@ -21,6 +21,7 @@ const getUsers = (e) => {
 
 const showUsers = (users) => {
     const resultArea = document.querySelector('.user-list');
+    resultArea.textContent = "";
     users.forEach(user => {
         const item = document.createElement('div');
         item.className = 'user';
