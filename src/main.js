@@ -15,8 +15,21 @@ const getUsers = (e) => {
                 return response.json()
             }
         })
-        .then(users => console.log(users))
+        .then(json => showUsers(json.results))
         .catch(err => console.log(err))
+}
+
+const showUsers = (users) => {
+    const resultArea = document.querySelector('.user-list');
+    users.forEach(user => {
+        const item = document.createElement('div');
+        item.className = 'user';
+        item.innerHTML = `
+        <div class="user__name">${user.name.title.toUpperCase()} ${user.name.first.toUpperCase()} ${user.name.last.toUpperCase()}</div>
+        <img class="user__image" src=${user.picture.medium}>
+        `;
+        resultArea.appendChild(item);
+    });
 }
 
 document.querySelector('.generator').addEventListener('submit', getUsers)
